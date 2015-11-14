@@ -1,0 +1,14 @@
+[Unit]
+Description=BitTorrent Sync Daemon
+After=syslog.target network.target auditd.service
+
+[Service]
+ExecStart=<%= @binary %> --config /etc/btsync/btsync.conf
+PIDFile=<%= @storage_path %>/btsync.pid
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartSec=90s
+
+[Install]
+WantedBy=multi-user.target

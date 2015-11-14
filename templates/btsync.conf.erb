@@ -1,0 +1,30 @@
+// This file is managed by Puppet.  All changes will be overwritten.
+{
+	"storage_path" : "<%= @storage_path %>/",
+	"vendor": "tuxpoldo",
+	"display_new_version": false,
+	"disk_low_priority" : true,
+	"lan_encrypt_data" : true,
+	"rate_limit_local_peers" : false,
+	"folder_rescan_interval" : 600,
+	"folder_defaults.delete_to_trash" : true,
+	"folder_defaults.use_dht" : false,
+	"folder_defaults.use_lan_broadcast" : true,
+	"folder_defaults.use_relay" : true,
+	"folder_defaults.use_tracker" : true,
+	"folder_defaults.known_hosts" : "",
+        "pid_file" : "<%= @storage_path %>/btsync.pid",
+	"webui" :
+	{
+		"directory_root" : "/tmp",
+		"listen" : "<%= @listen_address %>:<%= @listen_port %>",
+<% if @force_https -%>
+		"force_https" : true,
+		"ssl_certificate" : "/etc/btsync/btsync.crt",
+		"ssl_private_key" : "/etc/btsync/btsync.key"
+<% else -%>
+                "force_https" : false
+<% end -%>
+	}
+}
+
